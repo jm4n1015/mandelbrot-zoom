@@ -2,16 +2,16 @@ IDIR=include
 LDIR=lib
 SDIR=src
 ODIR=src/obj
-LIBS=-L$(LDIR) -Wl,-rpath,$(LDIR)
+LIBS=-L$(LDIR) -Wl,-rpath,$(LDIR) -lmpc -lmpfr
 
-CFLAGS=-I$(IDIR) $(LIBS) --std=c99 -W -Wall -Wextra -Werror -O2
+CFLAGS=-I$(IDIR) $(LIBS) --std=c99 -W -Wall -Wextra -Werror -g
 
 CC=gcc
 
-_DEPS=
+_DEPS=mandelbrot.h
 DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ=main.o
+_OBJ=main.o mandelbrot.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
