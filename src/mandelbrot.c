@@ -1,7 +1,6 @@
 #include "mandelbrot.h"
 
 #include <stdlib.h>
-#include <stdio.h>
 
 // The initial precision value
 #define PREC_INIT   128
@@ -49,7 +48,6 @@ void mandelbrot_clear(struct mandelbrot *m) {
 
 unsigned int *mandelbrot_image(struct mandelbrot *m, const mpc_t *min, const mpc_t *max) {
     for (unsigned int i = 0; i < m->height; ++i) {
-        printf("%u\n", i);
         for (unsigned int x = 0; x < m->width; ++x) {
             // Calculate the value of C
             // TODO: this can be optimized
