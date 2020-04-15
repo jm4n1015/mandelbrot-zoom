@@ -17,8 +17,13 @@ OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-a.out: $(OBJ)
+a.out: $(OBJ) | $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
+
+$(OBJ): | $(ODIR)
+
+$(ODIR):
+	mkdir -p $(ODIR)
 
 .PHONY: clean
 
